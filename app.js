@@ -14,7 +14,8 @@ var app = express();
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb://library:POpoPOpo@cluster0-shard-00-00-yfsgt.mongodb.net:27017,cluster0-shard-00-01-yfsgt.mongodb.net:27017,cluster0-shard-00-02-yfsgt.mongodb.net:27017/locallibrary?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
+var dev_db_url = 'mongodb://library:POpoPOpo@cluster0-shard-00-00-yfsgt.mongodb.net:27017,cluster0-shard-00-01-yfsgt.mongodb.net:27017,cluster0-shard-00-02-yfsgt.mongodb.net:27017/locallibrary?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
+var mongoDB = process.env.MONGO_URI || dev_db_url;
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true, });
 var db = mongoose.connection;
